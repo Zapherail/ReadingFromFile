@@ -1,0 +1,40 @@
+def main():
+    try:
+        #Creating empty strings to place contents of file in. opening file for read only
+            even = ""
+            odd = ""
+            infile = open("mod3numlist.txt", "r")
+            #Running for loop to read each line of the file
+            for line in infile:
+                #Stripping white space and casting into int format
+                num = int(line.strip())
+                #running if/else to place file contents in correct string
+                if num % 2 == 0:
+                    even += line + "\n"
+                else:
+                    odd += line + "\n"
+            #closing file
+            infile.close()
+            # printing results
+            print(even)
+            print(odd)
+            # calling function to save it to file
+            save_to_file(even, odd)
+    #throwing FileNotFoundError
+    except FileNotFoundError:
+        print("Could not find file")
+        print()
+
+
+#Method to save strings to file
+def save_to_file(even, odd):
+    even_file = open("even.txt", "w")
+    even_file.write(even)
+    odd_file = open("odd.txt", "w")
+    odd_file.write(odd)
+    even_file.close()
+    odd_file.close()
+
+
+
+main()
